@@ -1,7 +1,7 @@
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
-from cocotb.runner import get_runner
+from cocotb_tools.runner import get_runner
 
 @cocotb.test()
 async def test_addition(dut):
@@ -12,6 +12,8 @@ async def test_addition(dut):
     dut.a.value = 5
     dut.b.value = 3
     await RisingEdge(dut.clk)
+    await RisingEdge(dut.clk)
+    cocotb.log.info(">> cocotb: test_addition finished, checking result")
     assert dut.sum.value == 8, f"Expected 8, got {dut.sum.value}"
 
 def test_simple_adder_hidden_runner():

@@ -1,0 +1,41 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2009.vpi";
+S_0000026083a82bb0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0000026083a82d40 .scope module, "simple_adder" "simple_adder" 3 4;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 8 "a";
+    .port_info 2 /INPUT 8 "b";
+    .port_info 3 /OUTPUT 8 "sum";
+o0000026083ab6fd8 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v0000026083a83100_0 .net "a", 7 0, o0000026083ab6fd8;  0 drivers
+o0000026083ab7008 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v0000026083a6eef0_0 .net "b", 7 0, o0000026083ab7008;  0 drivers
+o0000026083ab7038 .functor BUFZ 1, C4<z>; HiZ drive
+v0000026083ab2fb0_0 .net "clk", 0 0, o0000026083ab7038;  0 drivers
+v0000026083ab3050_0 .var "sum", 7 0;
+E_0000026083ab5d40 .event posedge, v0000026083ab2fb0_0;
+    .scope S_0000026083a82d40;
+T_0 ;
+    %wait E_0000026083ab5d40;
+    %load/vec4 v0000026083a83100_0;
+    %load/vec4 v0000026083a6eef0_0;
+    %add;
+    %assign/vec4 v0000026083ab3050_0, 0;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "C:\Users\Admin\verilog-coding-template\rtl-verilog-repo\sources\simple_adder.sv";
